@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h2
+        a(href='#') Home
+    p Welcome to Tech Puppies, &nbsp;
+        if user
+            |#{user.profile.name || user.email || user.id}&nbsp;
+            a(href='/logout') Sign out
+        else
+            a(href='/auth/github') Sign in with Github
+
+    if user
+        ul
+            li
+                a(href='/github/streak') Github Streak

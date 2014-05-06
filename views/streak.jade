@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h2
+        a(href='#') Github Streak
+    p Because of the technical problem, we only support 'watching' commits of open source repositories.
+    if user
+        p Current streak: !{counts.length} days
+        ul
+            each count in counts
+                li !{count[1]} commits on !{count[0]}
