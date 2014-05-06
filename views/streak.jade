@@ -4,6 +4,9 @@ block content
     h2
         a(href='#') Github Streak
     p Because of the technical problem, we only support 'watching' commits of open source repositories.
+    if !user.email
+        p You have to setup your email address for streak-reminder.&nbsp;
+            a(style='color:#e74c3c',href='/account') Go set it.
     if user
         p Current streak: !{counts.length} days
         ul

@@ -23,7 +23,7 @@ function checkFor(user) {
     request('https://github.com/users/' + user.profile.name + '/contributions_calendar_data', function(error, response, body) {
         if (!error && response.statusCode == 200) {
             var json = JSON.parse(body);
-            if (json[json.length - 1][1] === 0) {
+            if (json[json.length - 1][1] === 0 && user.email !== undefined) {
                 console.log('remind ' + user.profile.name);
                 remind([user.email]);
             }
@@ -42,6 +42,6 @@ User.find({}, function(err, users) {
     users.forEach(function(user) {
         checkFor(user);
     });
-    mongoose.disconnect()
+    mongoose.disconnect();
     return 1;
 });
