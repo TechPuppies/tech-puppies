@@ -1,25 +1,29 @@
 extends layout
 
 block content
-    h2
-        a(href='#') Github Streak
-    p What is Github Streak? It is the days you consecutively contributed to repositories on Github. If you need some motivation, please read this:
-        a(href="http://ryanseys.com/blog/177-days-of-github/") 177 Days of GitHub
+    div.row
+        div.col-sm-8
+            h2
+                a(href='#') Github Streak
+            p What is Github Streak? It is the days you consecutively contributed to repositories on Github. 
+            p If you still need some motivation, please read this:
+                a(href="http://ryanseys.com/blog/177-days-of-github/") 177 Days of GitHub
 
-    p GitHub contribution tricks
-    ol
-        li GitHub runs on PST, which meant I could contribute anywhere from 12am — 3am local time (EST) and have it count for the previous day. When I got home extra late a few nights, this trick had my back.
-        li Filing an issue on any repo counts as a contribution. This saved me a few times I was short on code ideas.
-        li Commits are separate from pushes. Commit now and push later and it will still count for whenever you commited.
-        li Initial commits from newly created repos don’t count. But the second commit on that repo will make both commits count. This one is weird.
-        li Pull requests count for 1 contribution when you make them and another contribution if they are merged. If they don’t get merged, sorry, no second contribution.
+            if !user.email
+                p You have to setup your email address for streak-reminder.&nbsp;
+                    a(style='color:#e74c3c',href='/account') Go set it.
+            if user
+                p Your current streak: !{counts.length} days
+                ul
+                    each count in counts
+                        li !{count[1]} commits on !{count[0]}
 
-    p Because of the technical problem, we only support 'watching' commits of open source repositories.
-    if !user.email
-        p You have to setup your email address for streak-reminder.&nbsp;
-            a(style='color:#e74c3c',href='/account') Go set it.
-    if user
-        p Current streak: !{counts.length} days
-        ul
-            each count in counts
-                li !{count[1]} commits on !{count[0]}
+            p GitHub contribution tricks
+            ol
+                li GitHub runs on PST, which meant I could contribute anywhere from 12am — 3am local time (EST) and have it count for the previous day. When I got home extra late a few nights, this trick had my back.
+                li Filing an issue on any repo counts as a contribution. This saved me a few times I was short on code ideas.
+                li Commits are separate from pushes. Commit now and push later and it will still count for whenever you commited.
+                li Initial commits from newly created repos don’t count. But the second commit on that repo will make both commits count. This one is weird.
+                li Pull requests count for 1 contribution when you make them and another contribution if they are merged. If they don’t get merged, sorry, no second contribution.
+
+            p Because of the technical problem, we only support 'watching' commits of open source repositories.
