@@ -19,6 +19,7 @@ var passport = require('passport');
 
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var algController = require('./controllers/alg');
 
 /**
  * API keys + Passport configuration.
@@ -76,6 +77,10 @@ app.get('/github/streak', homeController.githubStreak);
 app.get('/login', userController.getLogin);
 // app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
+
+app.get('/alg', algController.getHome);
+app.get('/alg/s:season/m:mission', algController.getMission);
+
 // app.get('/forgot', userController.getForgot);
 // app.post('/forgot', userController.postForgot);
 // app.get('/reset/:token', userController.getReset);
